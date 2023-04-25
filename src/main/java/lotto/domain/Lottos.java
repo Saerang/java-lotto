@@ -24,7 +24,7 @@ public class Lottos {
     }
 
     public List<Lotto> lottos() {
-        return this.lottos;
+        return Collections.unmodifiableList(this.lottos);
     }
 
     public long purchaseAmount() {
@@ -33,5 +33,14 @@ public class Lottos {
 
     public int purchaseQuantity() {
         return this.lottos.size();
+    }
+
+    public List<WinType> confirmWins(WinNumbers winNumbers) {
+        List<WinType> winTypes = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            winTypes.add(winNumbers.confirmWin(lotto));
+        }
+
+        return winTypes;
     }
 }
